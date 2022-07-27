@@ -57,7 +57,7 @@ pipeline{
         
         dir('source_code'){
           
-            sh "docker build --tag ${IMAGE_NAME}:${BUILD_NUMBER} --build-arg PORT_NUMBER=${PORT_APP} -f ${PATH_TO_DOCKERFILE} ."
+            sh "docker build --tag ${IMAGE_NAME}:${BUILD_NUMBER} --build-arg PORT_NUMBER=${PORT} -f ${PATH_TO_DOCKERFILE} ."
             
         }
         
@@ -68,7 +68,7 @@ pipeline{
     stage('Deploy'){
       steps{
         
-          sh "docker run --name ${CONTAINER_NAME} -d -p ${PORT}:${PORT_APP} ${IMAGE_NAME}:${BUILD_NUMBER}"
+          sh "docker run --name ${CONTAINER_NAME} -d -p ${PORT}:${PORT} ${IMAGE_NAME}:${BUILD_NUMBER}"
         
       }
       
