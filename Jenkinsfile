@@ -23,7 +23,7 @@ pipeline{
        
      }
     
-     stage('Preparation'){
+     /*stage('Preparation'){
         
       steps{
         
@@ -34,7 +34,7 @@ pipeline{
         
       }
       
-    }
+    }*/
     
     stage('GetSourceCode'){
         steps{
