@@ -20,6 +20,8 @@ pipeline{
                           string(defaultValue: '/var/lib/jenkins/workspace/Pipeline_Job1_Frontend_Declarative/DockerDirectory/Dockerfile', name: 'PATH_TO_DOCKERFILE', description: ''),
                           string(defaultValue: 'damy28/frontend_repo', name: 'IMAGE_NAME', description: ''),
                           string(defaultValue: 'frontend_cont', name: 'CONTAINER_NAME', description: ''),
+                          string(defaultValue: 'damy2', name: 'REMOTE_SERVER_USER', description: ''),
+                          string(defaultValue: '192.168.152.131', name: 'REMOTE_SERVER_IP', description: ''),
                           choice(choices: ['3000', '3001', '3002'], name: 'PORT')
                       ])
                   ])
@@ -89,7 +91,7 @@ pipeline{
     stage('Deploy'){
       steps{
         
-          sh "ssh damy2@192.168.152.131 'docker run --name ${CONTAINER_NAME} -d -p ${PORT}:${PORT} ${IMAGE_NAME}:${BUILD_NUMBER}'"
+          sh "ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_IP} 'docker run --name ${CONTAINER_NAME} -d -p ${PORT}:${PORT} ${IMAGE_NAME}:${BUILD_NUMBER}'"
         
       }
       
